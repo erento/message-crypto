@@ -1,0 +1,32 @@
+{
+    "name": "erento-pubsub-libs-node",
+    "version": "0.0.1",
+    "description": "Erento Pubsub Signature Verification and Description",
+    "main": "index.js",
+    "scripts": {
+        "test": "istanbul test ./node_modules/.bin/_mocha -- -R spec ./spec"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+ssh://git@github.com/erento/pubsub-libs.git"
+    },
+    "keywords": [
+        "erento",
+        "pubsub",
+        "signature",
+        "descryption"
+    ],
+    "author": "Erento GmbH",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/erento/pubsub-libs/issues"
+    },
+    "homepage": "https://github.com/erento/pubsub-libs#readme",
+    "dependencies": {
+    },
+    "devDependencies": {
+        "istanbul": "^0.4.4",
+        "mocha": "^2.5.3",
+        "should": "^7.1.0"
+    }
+}
