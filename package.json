@@ -8,7 +8,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+ssh://git@github.com/erento/pubsub-libs.git"
+        "url": "git+ssh://git@github.com/erento/pubsub-nodejs.git"
     },
     "keywords": [
         "erento",
@@ -19,9 +19,9 @@
     "author": "Erento GmbH",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/erento/pubsub-libs/issues"
+        "url": "https://github.com/erento/pubsub-nodejs/issues"
     },
-    "homepage": "https://github.com/erento/pubsub-libs#readme",
+    "homepage": "https://github.com/erento/pubsub-nodejs#readme",
     "dependencies": {
     },
     "devDependencies": {
