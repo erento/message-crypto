@@ -14,7 +14,7 @@
         "erento",
         "pubsub",
         "signature",
-        "descryption"
+        "decryption"
     ],
     "author": "Erento GmbH",
     "license": "MIT",
