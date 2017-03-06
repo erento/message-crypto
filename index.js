@@ -1,15 +1,13 @@
 const crypto = require('crypto');
 
-const Error = function(msg) {
-                  return {
-                      "message": msg
-                  }
-              };
+const SIGN_HASH = 'sha512',
+CIPHER = 'aes-128-ecb',
+UTF8 = 'utf8';
 
 function _verifySignature(b64body, signKey, signature) {
     return new Promise(
         function(resolve, reject) {
-            const hmac = crypto.createHmac('sha512', signKey);
+            const hmac = crypto.createHmac(SIGN_HASH, signKey);
 
             hmac.on('readable', function() {
                 const data = hmac.read();
@@ -28,15 +26,11 @@ function _verifySignature(b64body, signKey, signature) {
 function _decrypt(b64body, encryptionKey) {
     return new Promise(
         function(resolve, reject) {
-            var decipher = crypto.createDecipher('aes-128-ecb', encryptionKey);
-            resolve(decipher.update(b64body, 'base64', 'utf8') + decipher.final('utf8'));
+            var decipher = crypto.createDecipher(CIPHER, encryptionKey);
+            resolve(decipher.update(b64body, 'base64', UTF8) + decipher.final(UTF8));
         }).catch(
             function(err) {
-                if (err.message !== 'error:06065064:digital envelope routines:EVP_DecryptFinal_ex:bad decrypt') {
-                    throw err;
-                } else {
-                    throw new Error('Decryption failed.');
-                }
+                throw err;
             });
 }
 

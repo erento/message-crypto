@@ -6,12 +6,6 @@ const should = require('should'),
 describe('pubsub', function() {
     this.timeout(10000);
 
-    const catchHandler = function(done) {
-                             return function(err) {
-                                 return done(err);
-                             };
-                         };
-
     it('should decrypt a message', function(done) {
         const tests = [
             pubsub.decrypt('Pa96UDfeLNKI9ygjJ7kAyg==', 'TestAESKey').then(function(result) {
@@ -22,12 +16,12 @@ describe('pubsub', function() {
             pubsub.decrypt('Pa97UDfeLNKI9ygjJ7kAyg==', 'TestAESKey').then(function(result) {
                 done(null);
             }).catch(function(err) {
-                err.message.should.equal('Decryption failed.');
+                err.message.should.equal('error:06065064:digital envelope routines:EVP_DecryptFinal_ex:bad decrypt');
             }),
             pubsub.decrypt('Pa96UDfeLNKI9ygjJ7kAyg==', 'TestKey').then(function(result) {
                 done(null);
             }).catch(function(err) {
-                err.message.should.equal('Decryption failed.');
+                err.message.should.equal('error:06065064:digital envelope routines:EVP_DecryptFinal_ex:bad decrypt');
             })
         ]
 
