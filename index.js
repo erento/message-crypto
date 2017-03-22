@@ -1,7 +1,7 @@
 const crypto = require('crypto');
 
 const SIGN_HASH = 'sha512',
-CIPHER = 'aes-128-ecb',
+CIPHER = 'aes-128-ecb', // TODO: Change to CBC mode, since this is wtf
 UTF8 = 'utf8';
 
 function _verifySignature(b64body, signKey, signature) {
