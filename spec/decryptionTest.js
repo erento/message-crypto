@@ -8,18 +8,18 @@ describe('pubsub', function() {
 
     it('should decrypt a message', function(done) {
         const tests = [
-            pubsub.decrypt('Pa96UDfeLNKI9ygjJ7kAyg==', 'TestAESKey').then(function(result) {
+            pubsub.decrypt('wi/WnD0ujMRoTG/d6cAGufSZ0rxaNE8uUXFE+eYqfR4=', 'TestAESKey').then(function(result) {
                 result.should.equal('A123');
             }).catch(function(err) {
-                done(err);
+                throw err;
             }),
-            pubsub.decrypt('Pa97UDfeLNKI9ygjJ7kAyg==', 'TestAESKey').then(function(result) {
-                done(null);
+            pubsub.decrypt('Wi/WnD0ujMRoTG/d6cAGufSZ0rxaNE8uUXFE+eYqfR4=', 'TestAESKey').then(function(result) {
+                return null;
             }).catch(function(err) {
                 err.message.should.equal('error:06065064:digital envelope routines:EVP_DecryptFinal_ex:bad decrypt');
             }),
-            pubsub.decrypt('Pa96UDfeLNKI9ygjJ7kAyg==', 'TestKey').then(function(result) {
-                done(null);
+            pubsub.decrypt('wi/WnD0ujMRoTG/d6cAGufSZ0rxaNE8uUXFE+eYqfR4=', 'TestKey').then(function(result) {
+                return null;
             }).catch(function(err) {
                 err.message.should.equal('error:06065064:digital envelope routines:EVP_DecryptFinal_ex:bad decrypt');
             })
