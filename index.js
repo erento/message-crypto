@@ -1,7 +1,7 @@
 const crypto = require('crypto');
 
 const SIGN_HASH = 'sha512',
-CIPHER = 'aes-128-ecb', // TODO: Change to CBC mode, since this is wtf
+CIPHER = 'aes-128-cbc',
 UTF8 = 'utf8';
 
 function _verifySignature(b64body, signKey, signature) {
@@ -26,8 +26,11 @@ function _verifySignature(b64body, signKey, signature) {
 function _decrypt(b64body, encryptionKey) {
     return new Promise(
         function(resolve, reject) {
-            var decipher = crypto.createDecipher(CIPHER, encryptionKey);
-            resolve(decipher.update(b64body, 'base64', UTF8) + decipher.final(UTF8));
+            let buf = Buffer.from(b64body, 'base64'),
+            iv = buf.slice(0, 16),
+            message = buf.slice(16, buf.length);
+            var decipher = crypto.createDecipheriv(CIPHER, crypto.createHash('md5').update(encryptionKey).digest(), iv);
+            resolve(decipher.update(message.toString('base64'), 'base64', UTF8) + decipher.final(UTF8));
         }).catch(
             function(err) {
                 throw err;
