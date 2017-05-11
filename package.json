@@ -1,6 +1,6 @@
 {
     "name": "erento-pubsub-libs-node",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "Erento Pubsub Signature Verification and Description",
     "main": "index.js",
     "scripts": {
