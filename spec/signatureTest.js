@@ -30,4 +30,14 @@ describe('pubsub', function() {
 
         Promise.all(tests).then(done());
     });
+
+    it('should create a signature', function(done) {
+        const tests = [
+            pubsub.createSignature('VGVzdDExMQ==', 'A123').then(function(result) {
+                result.should.be.equal('PC1eiR76WQDfU79IR7U+J6hmEJrBe4y4s8quoF0USBrwxc0ju2HIUKc2LKNknvvNe6V1Y71FAdQV5uNuoUTQew==');
+            }).catch(catchHandler(done))
+        ]
+
+        Promise.all(tests).then(done());
+    });
 });
