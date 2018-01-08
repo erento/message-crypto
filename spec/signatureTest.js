@@ -26,7 +26,20 @@ describe('pubsub', function() {
             pubsub.verifySignature('VGVzdDExMQ==', 'A123', 'GC1eiR76WQDfU79IR7U+J6hmEJrBe4y4s8quoF0USBrwxc0ju2HIUKc2LKNknvvNe6V1Y71FAdQV5uNuoUTQew==').then(function(result) {
                 result.should.be.false();
             }).catch(catchHandler(done))
-        ]
+        ];
+
+        Promise.all(tests).then(done());
+    });
+
+    it('should verify an event\'s signature', function(done) {
+        const tests = [
+            pubsub.verifyEventSignature({data: 'VGVzdDExMQ==', attributes: {signature: 'PC1eiR76WQDfU79IR7U+J6hmEJrBe4y4s8quoF0USBrwxc0ju2HIUKc2LKNknvvNe6V1Y71FAdQV5uNuoUTQew=='}}, 'A123').then(function(result) {
+                result.should.be.equal('VGVzdDExMQ==');
+            }).catch(catchHandler(done)),
+            pubsub.verifyEventSignature({message: {data: 'VGVzdDExMQ==', attributes: {signature: 'PC1eiR76WQDfU79IR7U+J6hmEJrBe4y4s8quoF0USBrwxc0ju2HIUKc2LKNknvvNe6V1Y71FAdQV5uNuoUTQew=='}}}, 'A123').then(function(result) {
+                result.should.be.equal('VGVzdDExMQ==');
+            }).catch(catchHandler(done))
+        ];
 
         Promise.all(tests).then(done());
     });
@@ -36,7 +49,7 @@ describe('pubsub', function() {
             pubsub.createSignature('VGVzdDExMQ==', 'A123').then(function(result) {
                 result.should.be.equal('PC1eiR76WQDfU79IR7U+J6hmEJrBe4y4s8quoF0USBrwxc0ju2HIUKc2LKNknvvNe6V1Y71FAdQV5uNuoUTQew==');
             }).catch(catchHandler(done))
-        ]
+        ];
 
         Promise.all(tests).then(done());
     });

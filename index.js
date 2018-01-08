@@ -66,9 +66,23 @@ function _encrypt(message, encryptionKey) {
             });
 }
 
+function _verifyEventSignature(event, signKey) {
+    let body = event && event.message && event.message.data || event && event.data || undefined;
+    let signature = event && event.message && event.message.attributes && event.message.attributes.signature || event && event.attributes && event.attributes.signature || undefined;
+    return _verifySignature(body, signKey, signature)
+           .then(function(check) {
+               if (check === true) {
+                   return body;
+               } else {
+                   throw {error: 'Signature check failed.', code: 'wrongSignature'};
+               }
+           });
+}
+
 module.exports = {
+    verifyEventSignature: _verifyEventSignature,
     verifySignature: _verifySignature,
     createSignature: _createSignature,
     decrypt: _decrypt,
     encrypt: _encrypt
-}
+};
