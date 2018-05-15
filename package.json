@@ -1,32 +1,30 @@
 {
-    "name": "erento-pubsub-libs-node",
-    "version": "0.0.2",
-    "description": "Erento Pubsub Signature Verification and Description",
+    "name": "message-crypto",
+    "version": "1.0.0",
+    "description": "Erento Message Signature Verification and Description",
     "main": "index.js",
     "scripts": {
-        "test": "istanbul test ./node_modules/.bin/_mocha -- -R spec ./spec"
+        "test": "jest"
     },
     "repository": {
         "type": "git",
-        "url": "git+ssh://git@github.com/erento/pubsub-nodejs.git"
+        "url": "git+ssh://git@github.com/erento/message-crypto.git"
     },
     "keywords": [
-        "erento",
-        "pubsub",
+        "crypto",
+        "message",
         "signature",
         "decryption"
     ],
-    "author": "Erento GmbH",
+    "author": "Erento GmbH <developers@erento.com> (https://www.erento.com)",
     "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/erento/pubsub-nodejs/issues"
+    "engines" : {
+        "node" : ">=8.9.0"
     },
-    "homepage": "https://github.com/erento/pubsub-nodejs#readme",
-    "dependencies": {
-    },
+    "dependencies": {},
     "devDependencies": {
-        "istanbul": "^0.4.4",
-        "mocha": "^2.5.3",
-        "should": "^7.1.0"
+        "@types/jest": "22.2.3",
+        "@types/node": "10.0.9",
+        "jest": "22.4.3"
     }
 }

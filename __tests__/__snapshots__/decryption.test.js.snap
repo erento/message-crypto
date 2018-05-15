@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`decryption should decrypt a message 1`] = `"A123"`;
+
+exports[`decryption should fail to decrypt a message 1`] = `"�123"`;
